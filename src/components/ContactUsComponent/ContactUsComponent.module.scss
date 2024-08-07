@@ -70,6 +70,11 @@
     outline: none;
     border: 1px solid #0c7d69;
   }
+
+  &:hover {
+    outline: none;
+    border: 1px solid #0c7d69;
+  }
 }
 
 .inputMessageField {
@@ -98,6 +103,11 @@
     outline: none;
     border: 1px solid #0c7d69;
   }
+
+  &:hover {
+    outline: none;
+    border: 1px solid #0c7d69;
+  }
 }
 
 .radioContainerMain {
@@ -117,6 +127,12 @@
   border-radius: 8px;
   border: 1px solid var(--color-grey-500, #86a2a5);
   background: var(--color-white, #fff);
+  cursor: pointer;
+
+  &:hover {
+    outline: none;
+    border: 1px solid #0c7d69;
+  }
 }
 
 .radioContainerSelected {
@@ -129,6 +145,10 @@
   border-radius: 8px;
   border: 1px solid var(--color-green-600, #0c7d69);
   background: var(--color-green-200, #e0f1e8);
+}
+
+.checkboxContainer {
+  cursor: pointer;
 }
 
 .asteriskContainer {
@@ -185,4 +205,15 @@
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 27px */
+
+  cursor: pointer;
+
+  &:hover {
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      ),
+      var(--color-green-600, #0c7d69);
+  }
 }
