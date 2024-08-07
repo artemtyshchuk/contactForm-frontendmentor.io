@@ -17,5 +17,6 @@
       "withTest": false,
       "withIndex": true
     }
-  }
+  },
+  "usesStyledComponents": true
 }

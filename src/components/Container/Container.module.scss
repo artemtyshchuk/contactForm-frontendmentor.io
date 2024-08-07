@@ -1,0 +1,26 @@
+// .container {
+//   width: 100%;
+//   background: #fff;
+//   border-radius: 16px;
+// }
+
+// @media (max-width: 1439px) {
+//   .container {
+//     width: 50%;
+//   }
+// }
+
+.container {
+  width: 100%;
+  padding: 0 24px;
+  background: #fff;
+  border-radius: 16px;
+
+  @media (min-width: 767px) {
+    width: 734px;
+    padding: 0;
+    background: #fff;
+    border-radius: 16px;
+    margin: 0 auto;
+  }
+}
