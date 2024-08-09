@@ -77,6 +77,10 @@
   }
 }
 
+.inputFieldError {
+  border: 1px solid var(--color-red, #d73c3c);
+}
+
 .inputMessageField {
   width: calc(100% - 50px);
   height: 79px;
@@ -108,6 +112,10 @@
     outline: none;
     border: 1px solid #0c7d69;
   }
+}
+
+.inputMessageFieldError {
+  border: 1px solid var(--color-red, #d73c3c);
 }
 
 .radioContainerMain {
@@ -181,7 +189,7 @@
 .checkboxText {
   padding-left: 16px;
   color: var(--color-grey-900, #2a4144);
-
+  margin: 8px 0;
   /* body-s */
   font-family: Karla;
   font-size: var(--font-size-body-sm, 16px);
@@ -191,6 +199,7 @@
 }
 
 .submitButton {
+  margin-top: 40px;
   width: 100%;
   height: 59px;
   border-radius: 8px;
@@ -216,4 +225,16 @@
       ),
       var(--color-green-600, #0c7d69);
   }
+}
+
+.errorText {
+  color: var(--color-red, #d73c3c);
+  padding-top: 8px;
+  margin: 0;
+  /* body-s */
+  font-family: Karla;
+  font-size: var(--font-size-body-sm, 16px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
 }

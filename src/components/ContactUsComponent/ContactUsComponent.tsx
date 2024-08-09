@@ -52,13 +52,15 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
       errors.email = ["Email Address is required"];
     }
     if (!data.queryType) {
-      errors.queryType = ["Query Type is required"];
+      errors.queryType = ["Please select a query type"];
     }
     if (!data.message) {
       errors.message = ["Message is required"];
     }
     if (!data.checkbox) {
-      errors.checkbox = ["Consent is required"];
+      errors.checkbox = [
+        "To submit this form, please consent to being contacted",
+      ];
     }
 
     return errors;
@@ -137,7 +139,9 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
               <p className={styles.asterisk}>*</p>
             </div>
             <input
-              className={styles.inputField}
+              className={`${styles.inputField} ${
+                formErrors.firstName ? styles.inputFieldError : ""
+              }`}
               type="text"
               value={formData.firstName}
               name="firstName"
@@ -145,7 +149,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
             />
             {formErrors.firstName &&
               formErrors.firstName.map((error, index) => (
-                <p key={index} className={styles.error}>
+                <p key={index} className={styles.errorText}>
                   {error}
                 </p>
               ))}
@@ -160,7 +164,9 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
             </div>
 
             <input
-              className={styles.inputField}
+              className={`${styles.inputField} ${
+                formErrors.lastName ? styles.inputFieldError : ""
+              }`}
               type="text"
               name="lastName"
               value={formData.lastName}
@@ -168,7 +174,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
             />
             {formErrors.lastName &&
               formErrors.lastName.map((error, index) => (
-                <p key={index} className={styles.error}>
+                <p key={index} className={styles.errorText}>
                   {error}
                 </p>
               ))}
@@ -184,7 +190,9 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
             <p className={styles.asterisk}>*</p>
           </div>
           <input
-            className={styles.inputField}
+            className={`${styles.inputField} ${
+              formErrors.email ? styles.inputFieldError : ""
+            }`}
             type="email"
             name="email"
             value={formData.email}
@@ -192,7 +200,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
           />
           {formErrors.email &&
             formErrors.email.map((error, index) => (
-              <p key={index} className={styles.error}>
+              <p key={index} className={styles.errorText}>
                 {error}
               </p>
             ))}
@@ -262,7 +270,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
             {/* <---> */}
             {formErrors.queryType &&
               formErrors.queryType.map((error, index) => (
-                <p key={index} className={styles.error}>
+                <p key={index} className={styles.errorText}>
                   {error}
                 </p>
               ))}
@@ -278,14 +286,16 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
           </div>
           <textarea
             autoComplete="off"
-            className={styles.inputMessageField}
+            className={`${styles.inputMessageField} ${
+              formErrors.message ? styles.inputMessageFieldError : ""
+            }`}
             name="message"
             value={formData.message}
             onChange={handleChange}
           />
           {formErrors.message &&
             formErrors.message.map((error, index) => (
-              <p key={index} className={styles.error}>
+              <p key={index} className={styles.errorText}>
                 {error}
               </p>
             ))}
@@ -318,7 +328,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
           </div>
           {formErrors.checkbox &&
             formErrors.checkbox.map((error, index) => (
-              <p key={index} className={styles.error}>
+              <p key={index} className={styles.errorText}>
                 {error}
               </p>
             ))}
