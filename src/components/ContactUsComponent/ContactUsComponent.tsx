@@ -3,8 +3,9 @@ import { ReactComponent as CkeckBoxIcon } from "assets/images/CheckboxIcon.svg";
 import { ReactComponent as ActiveCheckBoxIcon } from "assets/images/icon-checkbox-check.svg";
 import { ReactComponent as ActiveRadioButton } from "assets/images/icon-radio-selected.svg";
 import { ReactComponent as InactiveRadioIcon } from "assets/images/RadioIcon.svg";
+import { Notification } from "components/Notification";
 import { useState } from "react";
-import { ContactUsComponentTypes } from "types";
+import { ContactUsComponentTypes, NotificationType } from "types";
 
 interface ContactUsComponentProps {
   onSubmit: (data: ContactUsComponentTypes) => void;
@@ -17,6 +18,11 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [formErrors, setFormErrors] = useState<{ [key: string]: string[] }>({});
+  const [notification, setNotification] = useState<NotificationType>({
+    active: false,
+    message: "",
+    error: false,
+  });
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -25,6 +31,25 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
     message: "",
     checkbox: false,
   });
+
+  const handleNotification = (result: NotificationType) => {
+    setNotification({
+      active: true,
+      error: result.error,
+      message: result.message,
+    });
+
+    console.log("first", notification);
+
+    setTimeout(() => {
+      setNotification({
+        active: false,
+        error: false,
+        message: "",
+      });
+    }, 2000);
+    console.log("second", notification);
+  };
 
   const handleRadioChange = (value: EnquiryType) => {
     setSelectedValue(value);
@@ -90,7 +115,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
       }
 
       const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts/1/comments",
+        "https://jsonplaceholder.typicode.com/posts",
         {
           method: "POST",
           body: JSON.stringify({
@@ -116,12 +141,27 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
         });
         setSelectedValue(null);
         setIsChecked(false);
+        handleNotification({
+          active: true,
+          error: false,
+          message: "Message Sent!",
+        });
       } else {
         setErrorMessage("Response not ok. Something went wrong.");
+        handleNotification({
+          active: true,
+          error: true,
+          message: "Message Not Sent!",
+        });
       }
     } catch (error) {
       if (error instanceof Error) {
         setErrorMessage(error.message);
+        handleNotification({
+          active: true,
+          error: true,
+          message: "Message Not Sent!",
+        });
       }
     }
   };
@@ -140,7 +180,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
             </div>
             <input
               className={`${styles.inputField} ${
-                formErrors.firstName ? styles.inputFieldError : ""
+                formErrors.firstName?.length ? styles.inputFieldError : ""
               }`}
               type="text"
               value={formData.firstName}
@@ -165,7 +205,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
 
             <input
               className={`${styles.inputField} ${
-                formErrors.lastName ? styles.inputFieldError : ""
+                formErrors.lastName?.length ? styles.inputFieldError : ""
               }`}
               type="text"
               name="lastName"
@@ -191,7 +231,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
           </div>
           <input
             className={`${styles.inputField} ${
-              formErrors.email ? styles.inputFieldError : ""
+              formErrors.email?.length ? styles.inputFieldError : ""
             }`}
             type="email"
             name="email"
@@ -287,7 +327,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
           <textarea
             autoComplete="off"
             className={`${styles.inputMessageField} ${
-              formErrors.message ? styles.inputMessageFieldError : ""
+              formErrors.message?.length ? styles.inputMessageFieldError : ""
             }`}
             name="message"
             value={formData.message}
@@ -341,6 +381,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
         </button>
         {/* <---> */}
       </form>
+      {notification.active && <Notification notification={notification} />}
     </div>
   );
 };

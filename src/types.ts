@@ -8,3 +8,8 @@ export type ContactUsComponentTypes = {
   checkbox: boolean;
 };
 
+export type NotificationType = {
+  active: boolean;
+  error: boolean;
+  message: string;
+};

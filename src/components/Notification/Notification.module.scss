@@ -1,0 +1,45 @@
+.notification {
+  position: fixed;
+  left: 33%; /* Центрирует по горизонтали */
+  padding: 24px;
+  width: 450px;
+  height: 107px;
+  border-radius: var(--spacing-150, 12px);
+  background: var(--color-grey-900, #2a4144);
+}
+
+.notificationError {
+  background-color: lightcoral;
+}
+
+.notificationErrorIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.notificationTitleContainer {
+  display: flex;
+  align-items: center;
+}
+
+.notificationTitle {
+  color: var(--color-white, #fff);
+  padding-left: 8px;
+  /* body-m-bold */
+  font-family: Karla;
+  font-size: var(--font-size-body-md, 18px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 27px */
+}
+
+.notificationText {
+  color: var(--color-green-200, #e0f1e8);
+  margin-top: 8px;
+  /* body-s */
+  font-family: Karla;
+  font-size: var(--font-size-body-sm, 16px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
