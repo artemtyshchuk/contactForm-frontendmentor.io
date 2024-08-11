@@ -238,3 +238,28 @@
   font-weight: 400;
   line-height: 150%; /* 24px */
 }
+
+@media (max-width: 768px) {
+  //577
+  .contactUsComponent {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .contactUsComponent {
+    padding: 10px;
+  }
+  .namesContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 16px;
+  }
+
+  .radioContainerMain {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+  }
+}

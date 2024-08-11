@@ -8,13 +8,14 @@
       "customTemplates": {
         "component": "templates/default/TemplateName.tsx",
         "style": "templates/default/TemplateName.module.scss",
+        "test": "templates/component/TemplateName.test.ts",
         "index": "templates/default/index.ts"
       },
       "path": "src/components",
       "withLazy": false,
       "withStory": false,
       "withStyle": true,
-      "withTest": false,
+      "withTest": true,
       "withIndex": true
     }
   },

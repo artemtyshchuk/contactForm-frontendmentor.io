@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./Notification.module.scss";
 import { createPortal } from "react-dom";
 import { NotificationType } from "types"; // Предположим, что это определено корректно
@@ -39,6 +38,8 @@ export const Notification = ({ notification }: NotificationProps) => {
         className={`${styles.notification} ${
           notification.error ? styles.notificationError : ""
         }`}
+        data-testid="notification-success"
+
       >
         {notification.error ? (
           <>

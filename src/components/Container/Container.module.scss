@@ -24,3 +24,22 @@
     margin: 0 auto;
   }
 }
+
+@media (max-width: 768px) {
+  //577
+  .container {
+    width: 100%;
+    padding: 0;
+    background: #fff;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    width: 94%;
+    margin: 10px;
+    background: #fff;
+    border-radius: 16px;
+  }
+}

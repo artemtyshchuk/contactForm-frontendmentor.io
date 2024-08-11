@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import styles from "./ContactUsComponent.module.scss";
 import { ReactComponent as CkeckBoxIcon } from "assets/images/CheckboxIcon.svg";
 import { ReactComponent as ActiveCheckBoxIcon } from "assets/images/icon-checkbox-check.svg";
@@ -39,8 +40,6 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
       message: result.message,
     });
 
-    console.log("first", notification);
-
     setTimeout(() => {
       setNotification({
         active: false,
@@ -48,7 +47,6 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
         message: "",
       });
     }, 2000);
-    console.log("second", notification);
   };
 
   const handleRadioChange = (value: EnquiryType) => {
@@ -169,7 +167,11 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
   return (
     <div className={styles.contactUsComponent}>
       <p className={styles.title}>Contact Us</p>
-      <form className={styles.contactUsForm} onSubmit={fetchNewForm}>
+      <form
+        className={styles.contactUsForm}
+        onSubmit={fetchNewForm}
+        data-testid="contact-us-form"
+      >
         {/* names */}
         <div className={styles.namesContainer}>
           {/* firstName */}
@@ -186,6 +188,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
               value={formData.firstName}
               name="firstName"
               onChange={handleChange}
+              data-testid="firstName-input"
             />
             {formErrors.firstName &&
               formErrors.firstName.map((error, index) => (
@@ -211,6 +214,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
+              data-testid="lastName-input"
             />
             {formErrors.lastName &&
               formErrors.lastName.map((error, index) => (
@@ -237,6 +241,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            data-testid="email-input"
           />
           {formErrors.email &&
             formErrors.email.map((error, index) => (
@@ -278,7 +283,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
                   <InactiveRadioIcon className={styles.radioIcon} />
                 )}
               </div>
-              <p className={styles.radioLabel}>General Enquiry</p>
+              <label className={styles.radioLabel}>General Enquiry</label>
             </div>
             {/* <---> */}
 
@@ -305,7 +310,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
                   <InactiveRadioIcon className={styles.radioIcon} />
                 )}
               </div>
-              <p className={styles.radioLabel}>Support Request</p>
+              <label className={styles.radioLabel}>Support Request</label>
             </div>
             {/* <---> */}
             {formErrors.queryType &&
@@ -332,6 +337,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
             name="message"
             value={formData.message}
             onChange={handleChange}
+            data-testid="message-input"
           />
           {formErrors.message &&
             formErrors.message.map((error, index) => (
@@ -357,6 +363,7 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
               name="checkbox"
               checked={isChecked}
               readOnly
+              data-testid="consent-checkbox"
             />
             <div className={styles.checkboxIconContainer}>
               {isChecked ? <ActiveCheckBoxIcon /> : <CkeckBoxIcon />}
@@ -376,7 +383,11 @@ export const ContactUsComponent = ({ onSubmit }: ContactUsComponentProps) => {
         {/* <---> */}
 
         {/* submitBtn */}
-        <button className={styles.submitButton} type="submit">
+        <button
+          className={styles.submitButton}
+          type="submit"
+          data-testid="submit-button"
+        >
           Submit
         </button>
         {/* <---> */}
